@@ -14,20 +14,29 @@ import com.model.entidade.Cliente;
 @Path("/cliente")
 public class ResourceCliente {
 	
+	ControleCliente controleCliente = new ControleCliente();
+	Gson gson = new Gson();
+	
 	@GET
 	@Path("/listarTodos")
 	@Produces("application/json")
 	public String listarTodos(){
 		Gson gson = new Gson();
-		return gson.toJson(new ControleCliente().getClientes());
+		return gson.toJson(controleCliente.listar());
+	}
+	
+	@GET
+	@Path("/listar")
+	@Produces("application/json")
+	public String listar(){
+		return gson.toJson(controleCliente.getClientes());
 	}
 	
 	@POST
 	@Path("/enviarCliente")
 	@Produces("application/text")
 	public String enviarCliente(Cliente cliente){
-		System.out.println("chegou");
-		return new ControleCliente().add(cliente);
+		return controleCliente.add(cliente);
 	}		
 }
 

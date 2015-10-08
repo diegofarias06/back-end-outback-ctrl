@@ -16,8 +16,8 @@ public class ResourceFila {
 	@POST
 	@Path("/removerCliente")
 	@Produces("application/json")
-	public void removerClienteFila(Cliente cliente){
-		new ControleCliente().remover(cliente);
+	public String removerClienteFila(Cliente cliente){
+		return new ControleCliente().remover(cliente);
 	}	
 
 }
